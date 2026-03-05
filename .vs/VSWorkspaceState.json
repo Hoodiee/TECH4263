@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WeatherApp",
+    "\\WeatherApp\\WeatherApp"
   ],
-  "SelectedNode": "\\C:\\Users\\dixon\\source\\repos\\TECH4263",
+  "SelectedNode": "\\WeatherApp\\WeatherApp\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

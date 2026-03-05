@@ -19,37 +19,48 @@ app.UseHttpsRedirection();
 
 var students = new List<Student>(); // In-memory list to store students for demo purposes
 
-app.MapPost("/createstudent", (string name, int age, string major) =>
-{
-    var student = new Student(name, age, major);
 
+app.MapPost("/students", (CreateStudentDto dto) =>
+{
+    var student = new Student(dto.Name, dto.Age, dto.Major);
     students.Add(student);
-
-    // In a real application, you'd save the student to a database here
-    return Results.Created($"/createstudent/{student.Id}", student);
+    return Results.Created($"/students/{student.Id}", new StudentResponseDto
+    {
+        Id = student.Id,
+        Name = student.Name,
+        Major = student.Major
+    });
 })
-.WithName("CreateStudent")
+.WithName("CreateStudents")
 .WithOpenApi();
 
-app.MapGet("/getstudents", () =>
+app.MapGet("/students", () =>
 {
-    // In a real application, you'd retrieve students from a database here
-    return Results.Ok(students);
+    var result = students.Select(s => new StudentResponseDto
+    {
+        Id = s.Id,
+        Name = s.Name,
+        Major = s.Major
+    });
+    return Results.Ok(result);
 })
-.WithName("GetStudents")
+.WithName("GetStudentss")
 .WithOpenApi();
 
-app.MapGet("/getstudent/{id}", (int id) =>
+app.MapGet("/students/{id:int:min(1)}", (int id) =>
 {
     var student = students.FirstOrDefault(s => s.Id == id);
-    if (student == null)
+    if (student == null) return Results.NotFound();
+
+    return Results.Ok(new StudentResponseDto
     {
-        return Results.NotFound();
-    }
-    return Results.Ok(student);
-}).
-WithName("GetStudentById").
-WithOpenApi();
+        Id    = student.Id,
+        Name  = student.Name,
+        Major = student.Major
+    });
+})
+.WithName("GetStudentByIds")
+.WithOpenApi();
 
 app.Run();
 
