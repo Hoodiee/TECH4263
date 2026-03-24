@@ -2,14 +2,11 @@ using EquipmentAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -18,35 +15,74 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.MapPost("/createequipment", (string name, string category, string status, string location) => { ... })
-//   .WithName("CreateEquipment")
-//   .WithOpenApi();
-
-
-//app.MapGet("/getequipments", () => { ... })
-//   .WithName("GetEquipments")
-//   .WithOpenApi();
-
-//app.MapGet("/getequipment/{id}", (int id) => { ... })
-//   .WithName("GetEquipmentById")
-//   .WithOpenApi();
-
 var equipments = new List<Equipment>();
 
-app.MapPost("/createequipment", (Equipment eq) =>
+// =======================
+// POST /equipments
+// =======================
+app.MapPost("/equipments", (CreateEquipmentDto dto) =>
 {
-    equipments.Add(eq);
-    return Results.Created($"/getequipment/{eq.Id}", eq);
-}).WithName("CreateEquipment").WithOpenApi();
+    var equipment = new Equipment(
+        dto.Name,
+        dto.Category,
+        dto.Status,
+        dto.Location
+    );
 
-app.MapGet("/getequipments", () => Results.Ok(equipments)).WithName("GetEquipments").WithOpenApi();
+    equipments.Add(equipment);
 
-app.MapGet("/getequipment/{id}", (int id) =>
+    return Results.Created($"/equipments/{equipment.Id}", new EquipmentResponseDto
+    {
+        Id = equipment.Id,
+        Name = equipment.Name,
+        Category = equipment.Category,
+        Status = equipment.Status,
+        Location = equipment.Location
+    });
+})
+.WithName("CreateEquipment")
+.WithOpenApi();
+
+// =======================
+// GET /equipments
+// =======================
+app.MapGet("/equipments", () =>
 {
-    var eq = equipments.FirstOrDefault(e => e.Id == id);
-    return eq != null ? Results.Ok(eq) : Results.NotFound();
-}).WithName("GetEquipmentById").WithOpenApi();
+    var result = equipments.Select(e => new EquipmentResponseDto
+    {
+        Id = e.Id,
+        Name = e.Name,
+        Category = e.Category,
+        Status = e.Status,
+        Location = e.Location
+    });
 
+    return Results.Ok(result);
+})
+.WithName("GetEquipments")
+.WithOpenApi();
+
+// =======================
+// GET /equipments/{id}
+// =======================
+app.MapGet("/equipments/{id:int:min(1)}", (int id) =>
+{
+    var equipment = equipments.FirstOrDefault(e => e.Id == id);
+
+    if (equipment == null)
+        return Results.NotFound();
+
+    return Results.Ok(new EquipmentResponseDto
+    {
+        Id = equipment.Id,
+        Name = equipment.Name,
+        Category = equipment.Category,
+        Status = equipment.Status,
+        Location = equipment.Location
+    });
+})
+.WithName("GetEquipmentById")
+.WithOpenApi();
 
 app.Run();
 
