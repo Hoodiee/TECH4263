@@ -1,5 +1,9 @@
 using StudentAPI.Models;
+using System.Data.SqlClient;
+
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -17,50 +21,94 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var students = new List<Student>(); // In-memory list to store students for demo purposes
 
-
-app.MapPost("/students", (CreateStudentDto dto) =>
+app.MapPost("/students", async (CreateStudentDto dto) =>
 {
-    var student = new Student(dto.Name, dto.Age, dto.Major);
-    students.Add(student);
-    return Results.Created($"/students/{student.Id}", new StudentResponseDto
+    using var connection = new SqlConnection(connectionString);
+    await connection.OpenAsync();
+
+    var sql = @"
+        INSERT INTO Students (Name, Major, GPA)
+        OUTPUT INSERTED.Id
+        VALUES (@Name, @Major, @GPA);
+    ";
+
+    using var command = new SqlCommand(sql, connection);
+    command.Parameters.AddWithValue("@Name", dto.Name);
+    command.Parameters.AddWithValue("@Major", dto.Major);
+    command.Parameters.AddWithValue("@GPA", dto.GPA);
+
+    var newId = (int)(await command.ExecuteScalarAsync())!;
+
+    var response = new StudentResponseDto
     {
-        Id = student.Id,
-        Name = student.Name,
-        Major = student.Major
-    });
+        Id = newId,
+        Name = dto.Name,
+        Major = dto.Major,
+        GPA = dto.GPA
+    };
+
+    return Results.Created($"/students/{newId}", response);
 })
-.WithName("CreateStudents")
+.WithName("CreateStudent")
 .WithOpenApi();
 
-app.MapGet("/students", () =>
+app.MapGet("/students", async () =>
 {
-    var result = students.Select(s => new StudentResponseDto
+    var list = new List<StudentResponseDto>();
+
+    using var connection = new SqlConnection(connectionString);
+    await connection.OpenAsync();
+
+    var sql = "SELECT Id, Name, Major, GPA FROM Students;";
+
+    using var command = new SqlCommand(sql, connection);
+    using var reader = await command.ExecuteReaderAsync();
+
+    while (await reader.ReadAsync())
     {
-        Id = s.Id,
-        Name = s.Name,
-        Major = s.Major
-    });
-    return Results.Ok(result);
+        list.Add(new StudentResponseDto
+        {
+            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+            Name = reader.GetString(reader.GetOrdinal("Name")),
+            Major = reader.GetString(reader.GetOrdinal("Major")),
+            GPA = reader.GetDouble(reader.GetOrdinal("GPA"))
+        });
+    }
+
+    return Results.Ok(list);
 })
-.WithName("GetStudentss")
+.WithName("GetStudents")
 .WithOpenApi();
 
-app.MapGet("/students/{id:int:min(1)}", (int id) =>
+app.MapGet("/students/{id:int:min(1)}", async (int id) =>
 {
-    var student = students.FirstOrDefault(s => s.Id == id);
-    if (student == null) return Results.NotFound();
+    using var connection = new SqlConnection(connectionString);
+    await connection.OpenAsync();
 
-    return Results.Ok(new StudentResponseDto
+    var sql = "SELECT Id, Name, Major, GPA FROM Students WHERE Id = @Id;";
+
+    using var command = new SqlCommand(sql, connection);
+    command.Parameters.AddWithValue("@Id", id);
+
+    using var reader = await command.ExecuteReaderAsync();
+
+    if (!await reader.ReadAsync())
+        return Results.NotFound();
+
+    var dto = new StudentResponseDto
     {
-        Id    = student.Id,
-        Name  = student.Name,
-        Major = student.Major
-    });
+        Id = reader.GetInt32(reader.GetOrdinal("Id")),
+        Name = reader.GetString(reader.GetOrdinal("Name")),
+        Major = reader.GetString(reader.GetOrdinal("Major")),
+        GPA = reader.GetDouble(reader.GetOrdinal("GPA"))
+    };
+
+    return Results.Ok(dto);
 })
-.WithName("GetStudentByIds")
+.WithName("GetStudentById")
 .WithOpenApi();
+
 
 app.Run();
 
