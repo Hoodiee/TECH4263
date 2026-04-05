@@ -1,13 +1,17 @@
+using EquipmentAPI.Data;
 using EquipmentAPI.Models;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add EF Core
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 if (app.Environment.IsDevelopment())
 {
@@ -18,102 +22,76 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-// =======================
-// POST /equipments
-// =======================
-app.MapPost("/equipments", async (CreateEquipmentDto dto) =>
+// ─────────────────────────────────────────────────────────────
+// POST /equipments  (EF Core)
+// ─────────────────────────────────────────────────────────────
+app.MapPost("/equipments", async (CreateEquipmentDto dto, AppDbContext context) =>
 {
-    using var connection = new SqlConnection(connectionString);
-    await connection.OpenAsync();
-
-    var sql = @"
-        INSERT INTO Equipments (Name, Category, Status, Location)
-        OUTPUT INSERTED.Id
-        VALUES (@Name, @Category, @Status, @Location);
-    ";
-
-    using var command = new SqlCommand(sql, connection);
-    command.Parameters.AddWithValue("@Name", dto.Name);
-    command.Parameters.AddWithValue("@Category", dto.Category);
-    command.Parameters.AddWithValue("@Status", dto.Status);
-    command.Parameters.AddWithValue("@Location", dto.Location);
-
-    var newId = (int)(await command.ExecuteScalarAsync())!;
-
-    var response = new EquipmentResponseDto
+    var entity = new Equipment
     {
-        Id = newId,
         Name = dto.Name,
         Category = dto.Category,
         Status = dto.Status,
         Location = dto.Location
     };
 
-    return Results.Created($"/equipments/{newId}", response);
+    context.Equipments.Add(entity);
+    await context.SaveChangesAsync();
+
+    var response = new EquipmentResponseDto
+    {
+        Id = entity.Id,
+        Name = entity.Name,
+        Category = entity.Category,
+        Status = entity.Status,
+        Location = entity.Location
+    };
+
+    return Results.Created($"/equipments/{entity.Id}", response);
 })
 .WithName("CreateEquipment")
 .WithOpenApi();
 
 
-
-
-// =======================
-// GET /equipments
-// =======================
-app.MapGet("/equipments", async () =>
+// ─────────────────────────────────────────────────────────────
+// GET /equipments  (EF Core)
+// ─────────────────────────────────────────────────────────────
+app.MapGet("/equipments", async (AppDbContext context) =>
 {
-    var list = new List<EquipmentResponseDto>();
-
-    using var connection = new SqlConnection(connectionString);
-    await connection.OpenAsync();
-
-    var sql = "SELECT Id, Name, Category, Status, Location FROM Equipments;";
-
-    using var command = new SqlCommand(sql, connection);
-    using var reader = await command.ExecuteReaderAsync();
-
-    while (await reader.ReadAsync())
-    {
-        list.Add(new EquipmentResponseDto
+    var list = await context.Equipments
+        .Select(e => new EquipmentResponseDto
         {
-            Id = reader.GetInt32(reader.GetOrdinal("Id")),
-            Name = reader.GetString(reader.GetOrdinal("Name")),
-            Category = reader.GetString(reader.GetOrdinal("Category")),
-            Status = reader.GetString(reader.GetOrdinal("Status")),
-            Location = reader.GetString(reader.GetOrdinal("Location"))
-        });
-    }
+            Id = e.Id,
+            Name = e.Name,
+            Category = e.Category,
+            Status = e.Status,
+            Location = e.Location
+        })
+        .ToListAsync();
 
     return Results.Ok(list);
 })
 .WithName("GetEquipments")
 .WithOpenApi();
 
-// =======================
-// GET /equipments/{id}
-// =======================
-app.MapGet("/equipments/{id:int:min(1)}", async (int id) =>
+
+// ─────────────────────────────────────────────────────────────
+// GET /equipments/{id}  (EF Core)
+// ─────────────────────────────────────────────────────────────
+app.MapGet("/equipments/{id:int:min(1)}", async (int id, AppDbContext context) =>
 {
-    using var connection = new SqlConnection(connectionString);
-    await connection.OpenAsync();
+    var e = await context.Equipments.FindAsync(id);
 
-    var sql = "SELECT Id, Name, Category, Status, Location FROM Equipments WHERE Id = @Id;";
-
-    using var command = new SqlCommand(sql, connection);
-    command.Parameters.AddWithValue("@Id", id);
-
-    using var reader = await command.ExecuteReaderAsync();
-
-    if (!await reader.ReadAsync())
+    if (e is null)
         return Results.NotFound();
 
     var dto = new EquipmentResponseDto
     {
-        Id = reader.GetInt32(reader.GetOrdinal("Id")),
-        Name = reader.GetString(reader.GetOrdinal("Name")),
-        Category = reader.GetString(reader.GetOrdinal("Category")),
-        Status = reader.GetString(reader.GetOrdinal("Status")),
-        Location = reader.GetString(reader.GetOrdinal("Location"))
+        Id = e.Id,
+        Name = e.Name,
+        Category = e.Category,
+        Status = e.Status,
+        Location = e.Location
     };
 
     return Results.Ok(dto);
@@ -121,6 +99,5 @@ app.MapGet("/equipments/{id:int:min(1)}", async (int id) =>
 .WithName("GetEquipmentById")
 .WithOpenApi();
 
+
 app.Run();
-
-
