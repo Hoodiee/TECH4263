@@ -1,0 +1,136 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|c:\\users\\dixon\\source\\repos\\tech4263\\studentdashboard\\studentdashboard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|solutionrelative:studentdashboard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\studentdashboard\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|solutionrelative:studentdashboard\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|c:\\users\\dixon\\source\\repos\\tech4263\\studentdashboard\\studentdashboard\\models\\createstudentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|solutionrelative:studentdashboard\\models\\createstudentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|c:\\users\\dixon\\source\\repos\\tech4263\\studentdashboard\\studentdashboard\\models\\studentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|solutionrelative:studentdashboard\\models\\studentresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|c:\\users\\dixon\\source\\repos\\tech4263\\studentdashboard\\studentdashboard\\studentdashboard.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|solutionrelative:studentdashboard\\studentdashboard.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|c:\\users\\dixon\\source\\repos\\tech4263\\studentdashboard\\studentdashboard\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCCB4991-4381-5779-71B9-0BED0E5AF48C}|StudentDashboard\\StudentDashboard.csproj|solutionrelative:studentdashboard\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\Program.cs",
+              "RelativeDocumentMoniker": "StudentDashboard\\Program.cs",
+              "ToolTip": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\Program.cs",
+              "RelativeToolTip": "StudentDashboard\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-05T16:48:15.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateStudentDto.cs",
+              "DocumentMoniker": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\Models\\CreateStudentDto.cs",
+              "RelativeDocumentMoniker": "StudentDashboard\\Models\\CreateStudentDto.cs",
+              "ToolTip": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\Models\\CreateStudentDto.cs",
+              "RelativeToolTip": "StudentDashboard\\Models\\CreateStudentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-05T16:31:34.545Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StudentResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\Models\\StudentResponseDto.cs",
+              "RelativeDocumentMoniker": "StudentDashboard\\Models\\StudentResponseDto.cs",
+              "ToolTip": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\Models\\StudentResponseDto.cs",
+              "RelativeToolTip": "StudentDashboard\\Models\\StudentResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-05T16:28:47.286Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StudentDashboard.csproj",
+              "DocumentMoniker": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\StudentDashboard.csproj",
+              "RelativeDocumentMoniker": "StudentDashboard\\StudentDashboard.csproj",
+              "ToolTip": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\StudentDashboard.csproj",
+              "RelativeToolTip": "StudentDashboard\\StudentDashboard.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-05T16:27:51.003Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\MainForm.Designer.cs",
+              "RelativeDocumentMoniker": "StudentDashboard\\MainForm.Designer.cs",
+              "ToolTip": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\MainForm.Designer.cs",
+              "RelativeToolTip": "StudentDashboard\\MainForm.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEBAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-05T16:25:36.951Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\MainForm.cs",
+              "RelativeDocumentMoniker": "StudentDashboard\\MainForm.cs",
+              "ToolTip": "C:\\Users\\dixon\\source\\repos\\TECH4263\\StudentDashboard\\StudentDashboard\\MainForm.cs [Design]",
+              "RelativeToolTip": "StudentDashboard\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-05T17:24:40.566Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

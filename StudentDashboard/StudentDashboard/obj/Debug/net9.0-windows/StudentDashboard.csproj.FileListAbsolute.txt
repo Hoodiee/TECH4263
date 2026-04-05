@@ -1,0 +1,7 @@
+C:\Users\dixon\source\repos\TECH4263\StudentDashboard\StudentDashboard\obj\Debug\net9.0-windows\StudentDashboard.MainForm.resources
+C:\Users\dixon\source\repos\TECH4263\StudentDashboard\StudentDashboard\obj\Debug\net9.0-windows\StudentDashboard.csproj.GenerateResource.cache
+C:\Users\dixon\source\repos\TECH4263\StudentDashboard\StudentDashboard\obj\Debug\net9.0-windows\StudentDashboard.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dixon\source\repos\TECH4263\StudentDashboard\StudentDashboard\obj\Debug\net9.0-windows\StudentDashboard.AssemblyInfoInputs.cache
+C:\Users\dixon\source\repos\TECH4263\StudentDashboard\StudentDashboard\obj\Debug\net9.0-windows\StudentDashboard.AssemblyInfo.cs
+C:\Users\dixon\source\repos\TECH4263\StudentDashboard\StudentDashboard\obj\Debug\net9.0-windows\StudentDashboard.csproj.CoreCompileInputs.cache
+C:\Users\dixon\source\repos\TECH4263\StudentDashboard\StudentDashboard\obj\Debug\net9.0-windows\StudentDashboard.sourcelink.json
