@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentAPI", "EquipmentAPI\EquipmentAPI.csproj", "{F9F48540-A747-423E-B0D8-4CBE94E027AB}"
 EndProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentClient", "EquipmentClient\EquipmentClient.csproj", "{BE314AD5-F7D6-42C0-9DC4-5FFB01D8AF81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentDashboard", "EquipmentDashboard\EquipmentDashboard.csproj", "{B886431C-9869-43A3-BD56-175F047CBE66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{BE314AD5-F7D6-42C0-9DC4-5FFB01D8AF81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE314AD5-F7D6-42C0-9DC4-5FFB01D8AF81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE314AD5-F7D6-42C0-9DC4-5FFB01D8AF81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B886431C-9869-43A3-BD56-175F047CBE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B886431C-9869-43A3-BD56-175F047CBE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B886431C-9869-43A3-BD56-175F047CBE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B886431C-9869-43A3-BD56-175F047CBE66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
